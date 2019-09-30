@@ -6,13 +6,17 @@ then
 fi
 if test $# -eq 1
 then
-    DIR=$1
+    if ! test -d $1 || ! test -e $1
+    then
+        DIR=$1
+    else
+        echo "$1 no es un directorio o no existe."
+        exit 2
 else
     DIR=`pwd`
 fi
 
 for FICH in `find $DIR -name "*3*\.txt"`
 do
-    echo aaa
     mv $FICH `sed s/txt/md/ <<< $FICH`
 done
