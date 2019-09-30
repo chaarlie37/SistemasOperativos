@@ -6,12 +6,13 @@ then
 fi
 if test $# -eq 1
 then
-    if ! test -d $1 || ! test -e $1
+    if test -d $1 && test -e $1
     then
         DIR=$1
     else
         echo "$1 no es un directorio o no existe."
         exit 2
+    fi
 else
     DIR=`pwd`
 fi
