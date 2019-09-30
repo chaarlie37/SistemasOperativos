@@ -6,7 +6,7 @@ then
 fi
 if ! test -e $1  || ! test -f $1  || ! test -f $1
 then
-    echo "$1 no es un fichero, no existe, está vacío o no tiene terminación .tgz. El argumento debe ser un fichero con terminación .tgz. y contener datos"
+    echo "$1 no es un fichero, no existe o está vacío. El argumento debe ser un fichero con terminación .tgz. y contener datos"
     exit 2;
 fi
 if test -z `echo $1 | grep "\.tgz$"`
