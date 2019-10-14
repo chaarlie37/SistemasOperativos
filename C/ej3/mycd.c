@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include <unistd.h>
 
 int main(int argc, char *argv[]) {
     char *ruta;
@@ -14,7 +14,6 @@ int main(int argc, char *argv[]) {
         ruta = argv[1];
     }else{
         ruta = getenv("HOME");
-        printf("%d\n", ruta);
         if(ruta == NULL)
 		{
 		  fprintf(stderr,"No existe la variable $HOME\n");
