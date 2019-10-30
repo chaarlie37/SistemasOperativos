@@ -1,0 +1,3 @@
+ps aux -> te muestra todos los procesos del sistema
+
+si el compilador da algun problema ponemos -static
