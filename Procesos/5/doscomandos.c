@@ -27,6 +27,7 @@ int main(int argc, char const *argv[]) {
             close(STDIN_FILENO);
             dup(fd[0]);
             execvp(cmd2[0], cmd2);
+            printf("Pruebaaaa\n");
             close(fd[0]);
         }
         else{               // padre
