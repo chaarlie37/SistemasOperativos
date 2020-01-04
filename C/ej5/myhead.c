@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char *argv[]) {
 
     int numeroLineas = 10;
     char buf[1024];
@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]) {
         return 1;
     }
     if(argc == 2){
-        numeroLineas = atoi(argv[1]);
+        numeroLineas = atoi(argv[1] + 1);
     }
 
     for(int i = 0; i<numeroLineas; i++){
