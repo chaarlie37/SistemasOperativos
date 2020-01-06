@@ -1,0 +1,19 @@
+a)
+El proceso A ejecutaría DoA y se quedaría pausado debido a que S1 vale 0.
+El proceso B ejecutaría Do pero se quedaría pausado debido a que S2 vale 0.
+En el proceso B, imprimiría op que vale 0, ya que S3 vale 2 y puede "sobrepasar"
+dos wait sin bloquear el proceso. Después daría la señal de S2 y S1 permitiendo
+ejecutar la operación de sumar op en los procesos A y B. Ambos están accediendo
+a la zona crítica a la vez, por lo que el valor de op es ambiguo y en cada ejecución
+puede que de un resultado distinto. Después, ambos darían la señal de S3, permitiendo
+al proceso C seguir su ejecución imprimiendo op. Los valores que se imprimirán son
+desconocidos, puede que sea 1, 2 o 3. Sólo es seguro que el primer número que imprima
+el programa es 0.
+
+b)
+
+Si S3 está inicializado a 1, "sobrepasará" al primer wait se C, pero el proceso se
+bloqueará en el segundo al valer 0 después de pasar por el primer wait. Los otros
+dos procesos ejecutarán su operación Do pero se quedarán pausados también en sus
+respectivos wait. Todo el programa quedará bloqueado ya que para que A y B avancen
+necesitan los signal de C, proceso el cual también se ha quedado pausado.

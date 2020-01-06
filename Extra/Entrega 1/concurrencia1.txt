@@ -1,0 +1,48 @@
+a)
+
+El proceso A ejecutaría DoA y se haría la operación de op. Ahora op vale 1.
+Daría la señal al semáforo S2 y ejecutaría de nuevo DoA. Se quedaría pausado en S3
+hasta que otro proceso indique un signal, ya que S3 ahora vale 0.
+El proceso B ejecutaría DoB pero el proceso se pausaría en S2 hasta que el proceso
+A de la señal de S2. Una vez dada, se hace la operación de op, por lo que ahora
+vale 3. Esa operación se ejcuta siempre después de la del proceso A ya que B
+se queda pausado hasta que A da la señal.
+Después B da la señal del semáforo S1 lo que permite al proceso C continuar su
+ejecución (que estaba pausada por el wait(S1)). Se imprime el valor de op (3)
+y se da la señal de S3, por lo que el proceso A que estaba pausado puede continuar
+y se repetiría el proceso de nuevo. Se sumará +3 a op en cada "iteración" de
+este proceso, por lo que por pantalla se mostraría 3 6 9 12 etc.
+
+b)
+
+A
+
+DoA();
+op = op + 1;
+write(STDERR_FILENO, 3, sizeof(int));
+int i = 1;
+while(true){
+    DoA();
+    read(STDIN_FILENO, i, sizeof(int));
+    op = op + 1;
+    write(STDERR_FILENO, &i, sizeof(int));
+}
+
+B
+
+int i;
+while(true){
+    DoB();
+    read(STDIN_FILENO, i, sizeof(int));
+    op = op + 1;
+    write(STDERR_FILENO, &i, sizeof(int));
+}
+
+C
+
+int i;
+while(true){
+    read(STDIN_FILENO, i, sizeof(int));
+    printf("%d", op);
+    write(STDERR_FILENO, &i, sizeof(int));
+}

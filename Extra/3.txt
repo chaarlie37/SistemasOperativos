@@ -1,0 +1,21 @@
+a)
+El proceso A ejecutaría DoA pero se quedaría bloqueado en el wait(S1) ya que S1 vale 0.
+El proceso B ejecutaría DoB y sumaría +2 a op, ya que S2 vale 1 y supera el wait.
+Da la señal al semáforo S1, por lo que ocurrirían dos cosas simultáneamente:
+ - el proceso A continuaría con su ejecución y sumaría +1 a op y daría la señal a S2,
+   permitiendo al proceso B ser desbloqueado cuando llegue al wait(S2) en la siguiente
+   iteración del while.
+ - el proceso C (el cual estaría bloqueado por el wait(S1)) podría continuar con su
+   ejecución e imprimir el valor de op y daría la señal a S2,
+   permitiendo al proceso B ser desbloqueado cuando llegue al wait(S2) en la siguiente
+   iteración del while.
+   El valor que imprimiría C sería en primer lugar 2 (o 3, si A se ha ejecutado primero).
+   En la siguiente iteración imprimiría 4, al sumar +2 B y no haber sumado nada A;
+   imprimiría 5, al sumar +2 B y haber sumado + 1 A. O 6, si tenemos en cuenta que en la
+   iteración anterior A se ejecutó  primero.
+
+ b)
+ No, la aplicación no genera siempre el mismo resultado. Podría solucionarse utilizando
+ un semáforo más, de tal forma que una vez sumado op en el proceso B se sumase en el proceso
+ A y después se imprimiese en C. Es decir, que B haga una señal de S3 y A tenga un wait de S3.
+ 
